@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>souche圆盘抽奖demo</title>
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jQueryRotate.2.2.js"></script>
+<script src="jquery.easing.min.js"></script>
+<style>
+    * { 
+        -webkit-box-sizing: border-box; 
+        -moz-box-sizing: border-box; 
+        box-sizing: border-box;
+    }
+    img { 
+        width: 100%;
+        vertical-align: middle;
+    }
+    .wrap {
+        margin-top: 80px;
+    }
+	.bg-container {
+		width: 249px;
+        margin: 0 auto;
+        position: relative;
+        top: -57px;
+        height: 240px;
+
+	}
+	.bg-container img{
+        position: absolute;
+    }
+    .zhen{
+        width: 46px;
+        top:0;
+        left: 95px;
+        z-index: 10;
+    }
+    .circle{
+        /* top: 65px; */
+        top: 28px;
+        left: -7px;
+    }
+    .btn {
+        width: 146px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="bg-container">
+            <img class="circle-bg" src="images/circle-bg.png">
+            <img class="zhen" src="images/zhen.png">
+            <img class="circle" src="images/circle.png">
+       </div>
+       <div style="text-align: center; margin-bottom:15px;">
+            <img class="btn" id="begin-chou" src="images/award-btn.png">
+       </div>
+    </div>
+	<script type="text/javascript">
+$(function(){
+        var angles = {
+            // 大虫
+            4: {
+                name: '"大虫"挂件',
+                start: 0,
+                end: 72
+            },
+            // 奖金
+            5: {
+                name: '500元现金大奖',
+                start: 72,
+                end: 144
+            },
+            // 急救包
+            1: {
+                name: '车载多功能应急救援包',
+                start: 144,
+                end: 216
+            },
+            // 公仔
+            2: {
+                name: '夜来喵公仔',
+                start: 216,
+                end: 288
+            },
+            // 竹炭
+            3: {
+                name: '汽车竹炭玩具',
+                start: 288,
+                end: 360
+            }
+
+        };
+
+
+    // 调整一个角度范围, 不要出现太靠近边缘的情况
+    // 角度范围向里紧缩5deg
+    for(var i in angles){
+        angles[i].start = angles[i].start + 5;
+        angles[i].end = angles[i].end - 5;
+    }
+
+    var MIN_ROUND = 3;
+    var MAX_ROUND = 6;
+
+    /*var timeOut = function(){  //超时函数
+        $(".circle").rotate({
+            //angle:0, 
+            angle:5,
+            duration: 10000, 
+            animateTo: 2160, //这里是设置请求超时后返回的角度，所以应该还是回到最原始的位置，2160是因为我要让它转6圈，就是360*6得来的
+            callback:function(){
+                alert('网络超时')
+            }
+        }); 
+    };*/ 
+
+    var _data = {
+        getRandom: function(){
+            var r = Math.random()
+            if(r === 0){
+            // if(r >0.5){
+                console.log('got what we wanna to exclude, try again...');
+                return _data.getRandom()
+            }
+            else{
+                return r;
+            }
+        },
+        getRound: function(){
+            var r = _data.getRandom();
+            var round = MIN_ROUND + Math.round( r*(MAX_ROUND - MIN_ROUND) );
+            return round;
+        },
+        getTagetAngle: function(target){
+            var r = _data.getRandom();
+            var max = angles[target].end, min = angles[target].start;
+            var angle = min + Math.round( r*(max - min) );
+            return angle;
+        },
+        getReword: function(){
+            var index = Math.floor(Math.random()*(5));
+            var n=0;
+            console.log(index);
+            for(var i in angles){
+                if(n === index){
+                    return i;
+                }
+                n++;
+            }
+        }
+    };
+
+    var rotateFunc = function(awards,angle,text){  //awards:奖项，angle:奖项对应的角度
+        $('.circle').stopRotate();
+        $(".circle").rotate({
+            //angle:0, 
+            angle:5, 
+            duration: 5000, 
+            animateTo: angle+1440, //angle是图片上各奖项对应的角度，1440是我要让指针旋转4圈。所以最后的结束的角度就是这样子^^
+            callback:function(){
+                alert(text)
+            }
+        }); 
+    };
+    
+          
+    $('#begin-chou').on('click', function(){
+           
+                /*var time = [0,1];
+                    time = time[Math.floor(Math.random()*time.length)];
+                if(time==0){
+                    timeOut(); //网络超时
+                }*/
+                //if(time==1){
+                    var data = [1,2,3,4,5]; //返回的数组
+                        data = data[Math.floor(Math.random()*data.length)];
+                    for(var i in angles){
+                        if(data==i){
+                            rotateFunc(i,_data.getTagetAngle(data),angles[i].name)   
+                        }       
+                    };    
+
+                //}  
+    });
+})
+
+    </script>
+</body>
+</html>
