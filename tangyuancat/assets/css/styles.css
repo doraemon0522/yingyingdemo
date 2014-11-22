@@ -1,0 +1,231 @@
+* {
+	margin: 0;
+	padding: 0;
+} 
+
+body{
+    font-family: 'Microsoft YaHei', Tahoma, Helvetica, Arial, Verdana, sans-serif;;
+    background: url(../images/photo_bg.jpg);
+}
+#frmcont {
+    display: block;
+}
+.flip{
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    top: 145px;
+    left: 217px;
+}
+.flip .card-front{
+    z-index: 100;   /* 在demo基础上整合时很关键，图层不分开就会读不出背景 */
+    background: url(../images/Login_bg.gif);
+}
+.flip .card-back{
+    z-index: 1;
+    background-color: lightblue;
+}
+.btn{
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+.btn:hover{
+    color: red;
+}
+.btn-turn-front {
+    min-width: 3em;
+}
+
+/* --------------- 实现翻转的细节 勿动 ---------------*/
+.formContainer {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+.flip {
+    -webkit-transition: all 0ms ease;
+    transition: all 0ms ease;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.flip .card-front,
+.flip .card-back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    -webkit-transition: all 1.5s ease;
+    transition: all 1.5s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.flip .card-front{
+    height: 100%;
+    width: 100%;
+       
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+.flip .card-back{
+    padding: 0.5em;
+    box-sizing: border-box;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.flip.back,
+.flip.front{
+    -webkit-transition: all 1.5s ease;
+    transition: all 1.5s ease;
+}
+.flip.back{
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.flip.front{
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+}
+/* --------------- endof 勿动 ---------------*/
+.wrapper {
+    top: 200px;
+    width: 360px;
+    position: absolute;
+    left: 150px;
+    text-align: left;
+    margin: 0 auto;
+    border: 0;
+}
+
+input[type=text],input[type=password]{
+    /* The text fields */
+    font: 16px;
+    margin-bottom: 6px;
+    border: 1px solid #E3E3E3;
+    background: #FCFCFC;
+    height: 36px;
+    width: 278px;
+    position: relative;
+    text-indent: 8px;
+    color: black;
+    outline: none;
+}
+.loginbtn {
+    position:relative;
+    width: 280px;
+    height:36px;
+    cursor:pointer;
+    background: #666666;
+    border-radius:3px;
+    box-shadow:0 1px 1px #ccc;
+    border:none;
+    color:#fff;
+    font:14px/36px;
+
+}
+.card-front .switch {
+    position: relative;
+    margin-top: 30px;
+    width: 280px;
+}
+.switch span a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+.sweibo {
+    background: url(../images/sweibo.png);
+}
+.sweixin {
+    background: url(../images/sweixin.png);
+}
+.sqq {
+    background: url(../images/sqq.png);
+}
+.sdouban {
+    background: url(../images/sdouban.png);
+}
+.switch .resetpwd{
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    font-size: 16px;
+}
+.holder {
+    margin-left: 16px;
+    margin-top: 24px;
+}
+.card-back .wrapper a {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.weibo {
+    background: url(../images/weibo.png);
+}
+.weixin {
+    background: url(../images/weixin.png);
+}
+.qq {
+    background: url(../images/qq.png);
+}
+.douban {
+    background: url(../images/douban.png);
+}
+/*第三个页面*/
+.container .rmbform {
+    display: none;
+    position: absolute;
+    background: #e6e6e6;
+    top: 230px;
+    left: 320px;
+    width: 420px;
+    height: 270px;
+    z-index: 200;
+}
+.rmbwrapper {
+    margin: 26px 54px 0px 80px;
+}
+.container .rmbform .tyslogan {
+    width: 278px;
+    font-size: 22px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 26px;
+}
+.rmbform .verform {
+    width: 280px;
+}
+.rmbform .mobverify {
+    width: 130px;
+}
+.rmbform .msgsend {
+    color: #757575;
+    cursor: pointer;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    position: relative;
+    float: right;   
+}
+.rmbform .rmbwrapper .rtnswitch {
+    position: relative;
+    width: 280px;
+    height: 36px;
+    margin-top: 10px;
+    color: #757575;
+    cursor: pointer;
+    font-size: 14px;
+}

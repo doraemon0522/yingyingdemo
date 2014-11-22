@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3的3D变换 -- rotateY</title>
+
+    <!-- Our CSS stylesheet file -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->  
+   <!-- JavaScript includes -->
+	<script src="assets/js/jquery-1.9.1.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="formContainer" id="frmcont">
+            <div class="flip">
+                <div class="card-front">
+                    <div class="wrapper">
+                        <input type="text" name="userName" placeholder="账号/手机/邮箱" />
+                        <input type="password" name="pwd" placeholder="密码" />    
+                        <button type="button" class="loginbtn">登录</button> 
+                        <div class="switch">
+                            <span>
+                                <a href="#" title="微博账号登录" class="sweibo"></a>
+                                <a href="#" title="微信账号登录" class="sweixin"></a>
+                                <a href="#" title="QQ账号登录" class="sqq"></a>
+                                <a href="#" title="豆瓣账号登录" class="sdouban"></a>
+                            </span>
+                            <a href="#" id="mypwd" class="resetpwd">忘记密码》</a>
+                        </div> 
+                            
+                    </div>
+                    <a class="btn btn-turn-back" href="javascript:flip.turnBack()" class="btn">注册</a>
+                </div>
+                <div class="card-back">
+                    <div class="holder">使用以下账号注册</div>
+                    <div class="wrapper">
+                        <a href="#" title="微博账号注册" class="weibo"></a>
+                        <a href="#" title="微信账号注册" class="weixin"></a>
+                        <a href="#" title="QQ账号注册" class="qq"></a>
+                        <a href="#" title="豆瓣账号注册" class="douban"></a>
+                    </div>   
+                    <a class="btn btn-turn-front" href="javascript:flip.turnFront()" class="btn">登录</a>
+                </div>
+            </div>
+        </div>
+               <!-- 第三个页面 -->
+        <div id="remember" class="rmbform">
+            <div class="rmbwrapper">
+                <div class="tyslogan">汤圆是只猫</div>
+                <input type="text" name="useraccount" placeholder="邮箱/手机号" />
+                <div class="verform">
+                    <input type="text" name="useraccount" placeholder="验证码" class="mobverify" />
+                    <a href="#" class="msgsend">手机获取验证码</a>
+                </div>  
+                <button type="button" class="loginbtn">注册</button> 
+                <a href="#" id="rmbswitch" class="rtnswitch">《返回第三方账号登录</a>
+            </div>
+        </div>  <!-- 结束 -->
+    </div>
+
+
+    <script src="assets/js/script.js"></script>  
+        <script>
+            $("#mypwd").bind("click",function(){
+                $(".container #remember").css({display:"block"});                
+                $("#frmcont").css({display:"none"});
+            })
+             $("#rmbswitch").bind("click",function(){
+                $("#frmcont").css({display:"block"});
+                $(".container #remember").css({display:"none"});                
+            })
+
+        
+
+    </script>
+</body>
+</html>
+
