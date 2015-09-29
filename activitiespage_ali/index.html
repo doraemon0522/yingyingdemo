@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+<head>
+	<title>阿里云栖DEMO</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+
+		window.onload = function() {
+			//锚点定位
+			$("#nav-hd .navopt a").click(function(){
+				var target = $(this).attr("href");
+				var targetScroll = $(target).offset().top -90;
+				$("html,body").animate({scrollTop:targetScroll},500);
+			    return false;
+			    //console.log(targetScroll);
+			});
+			$(window).scroll(function(){
+				var top=$(document).scrollTop();//当前滚动条所在位置距离body的距离
+				var g=$("#container").find(".gamecontainer");
+
+				var activeID="";
+				g.each(function(){
+					var m=$(this);
+					var gtop=m.offset().top;//获取每一个模块的顶部
+					if(top > gtop - 150) {//-150是用户体验考虑
+						activeID = "#" +m.attr("id")
+					}else {
+						return false;
+					};
+					if (top < 1000) {
+
+					};
+
+					//console.log(gtop);
+				});
+				var activelink = $("#nav-hd").find(".active");//li层的控制
+				var currenta = $("#nav-hd").find(".currentcolor");//锚点a的样式控制
+				var navhd=$("#nav-hd");
+				if (activeID&&activelink !=activeID) {
+					activelink.removeClass("active");
+					currenta.removeClass("currentcolor");
+					/*var test =*/navhd.find("[href=" + activeID + "]").parent().addClass("active");
+					navhd.find("[href=" + activeID + "]").addClass("currentcolor");
+					/*onsole.log(test);*/
+				};
+				if (top < 850) {
+					navhd.find("[href=#mainer]").parent().addClass("active")
+					};
+			})
+
+			/*最后部分table的hover特效*/
+			var guodu = $("#prorule").find(".allimgwrap");
+			var adddetailexp = guodu.find(".hovertab");
+			var mouseli = adddetailexp.find(".explain-title");
+			var rightdetail = adddetailexp.find(".explain-detail");
+			var liexpitem = mouseli.find("li.expitem");
+			var detailCon = rightdetail.find(".item-detail");
+			
+			detailCon.eq(0).show();
+			mouseli.find(".titleali").eq(0).addClass("active");
+
+			mouseli.on("mouseenter", ".titleali",function(){
+				var titletabConling = mouseli.find(".titleali");
+				titletabConling.removeClass("active");
+				titletabConling.eq(titletabConling .index($(this))).addClass("active");
+				detailCon.hide().eq(titletabConling .index($(this))).show();
+
+				});		
+		}
+			
+	</script>
+</head>
+<body>
+	<div id="nav-hd">
+		<div class="wrap">
+			<div class="logoimg clearfix">
+				<a href=""><img src="images/logo-aliyun.svg"></a>
+				<a href=""><img src="images/logo-osc.svg"></a>
+			</div>
+			<div class="navopt clearfix">
+				<div class="hd-wrap active">
+					<a href="#mainer" class="currentcolor">首页</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#introduction">大赛简介</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#flow">比赛流程</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#spot">赛事亮点</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#participant">参赛对象</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#prorule">比赛规则</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#">参赛奖励</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#">比赛评委</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#">合作伙伴</a>
+				</div>
+				<div class="hd-wrap">
+					<a href="#">在线报名</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="container">
+		<div class="sliwarp">
+			<div class="gamecontainer" id="mainer">
+					<!-- <div class="bnrimg"></div> -->
+					<div class="bnrwrap">
+						<!-- <div class="titlewrap"> -->
+							<h1>云朵之上，编码未来</h1>
+							<h3>阿里云 开源编程马拉松</h3>
+							<h4>2015年9月8日 - 2015年10月15日</h4>
+							<div class="btnswrap">
+								<div class="btn"><a href="">在线报名</a></div>
+								<div class="btn"><a href="">云栖大会</a></div>
+							</div>
+						<!-- </div> -->				
+					</div>	
+				</div>
+		</div>	
+		<div class="gamecontainer" id="introduction">
+			<div class="gamelist">
+				<div class="gametitle">
+					<div class="irhombus"></div>
+					<div class="irhombus2"></div>
+					<h3>大赛简介</h3>
+				</div>
+				<div class="titlepwrap">
+					<p class="allword">互联网时代下无处不在云计算，各行各业的交错连接让DT时代更加丰富，在“互联网、创新、创业”的大背景下，阿里云为开发者们准备了一场技术角逐。</p>
+					<p class="allword">编程马拉松，强调浓烈的开发热情和对技术的不断探索的极客精神。阿里云致力于为开发者助力，希望通过全面开放 API/SDK 让云端开发有更多想象空间和实施的机会，同时还有丰厚的奖金和 “2015杭州·云栖大会”的线下路演机会。
+					同时，大赛还设置了基于阿里云安全API的专门赛区，同样提供了一个专项大奖，旨在让我们具备开发能力、能理解基本安全攻防原理的安全爱好者们能够一起共建云生态的安全。</p>
+					<p class="allword">你们只管专注于编码，其他的阿里云来护航！</p>
+				</div>
+				
+			</div>				
+		</div>
+		<div class="gamecontainer wallcolor" id="flow">
+			<div class="gamelist">
+				<div class="gametitle">
+					<div class="irhombus"></div>
+					<div class="irhombus2"></div>
+					<h3>比赛流程</h3>
+				</div>
+				<div class="walldetail">
+					<ul class="timershaft clearfix">
+						<li>
+							<i class="halo"></i>
+							<div class="time">9.08 - 9.20</div>
+							<div class="eventdetail">在线报名，团队筛选</div>
+						</li>
+						<li></li>
+						<li>
+							<i class="halo"></i>
+							<div class="time">9.20 - 10.06</div>
+							<div class="eventdetail">开发以及作品提交</div>
+						</li>
+						<li></li>
+						<li>
+							<i class="halo"></i>
+							<div class="time">10.07 - 10.08</div>
+							<div class="eventdetail">公布获奖队伍，并邀请杭州线下路演</div>
+						</li>
+						<li></li>
+						<li>
+							<i class="halo"></i>
+							<div class="time">10.14 - 10.15</div>
+							<div class="eventdetail">杭州<strong>云栖大会</strong>，现场颁奖并选出现场最具<span>人气奖</span></div>
+						</li>
+	
+					</ul>
+				</div>
+			</div>				
+		</div>
+		<div class="gamecontainer" id="spot">
+			<div class="gamelist">
+				<div class="gametitle">
+					<div class="irhombus"></div>
+					<div class="irhombus2"></div>
+					<h3>赛事亮点</h3>
+				</div>
+				<div class="allimgwrap">
+					<div class="shining-list">
+						<div class="shining-item item1">
+							<div class="item-img">
+								<!-- <img src="images/icon-shining1.png"> -->
+								<i class="triangle-mask"></i>
+								<i class="triangle"></i>
+							</div>
+							<div class="wordmsg">999999999999</div>
+						</div>
+						<div class="shining-item item2">
+							<div class="item-img">
+								<!-- <img src="images/icon-shining1.png"> -->
+								<i class="triangle-mask"></i>
+								<i class="triangle"></i>
+							</div>
+							<div class="wordmsg">999999999999999999<br/>999999999999999999999</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>				
+		</div>
+		<div class="gamecontainer  wallcolor" id="participant">
+			<div class="gamelist">
+				<div class="gametitle">
+					<div class="irhombus"></div>
+					<div class="irhombus2"></div>
+					<h3>参赛对象</h3>
+				</div>
+				<div class="allimgwrap">
+					<p class="developer">所有开发者/pm/设计师/安全爱好者或者有好点子的你</p>
+					<div class="persons">
+						<img src="images/role-04.png">
+						<span>开发者</span>
+					</div>
+					<div class="persons">
+						<img src="images/role-04.png">
+						<span>开发者</span>
+					</div>
+					<div class="persons">
+						<img src="images/role-04.png">
+						<span>开发者</span>
+					</div>
+					<div class="persons">
+						<img src="images/role-04.png">
+						<span>开发者</span>
+					</div>
+					<div class="persons">
+						<img src="images/role-04.png">
+						<span>开发者</span>
+					</div>
+				</div>
+			</div>				
+		</div>
+		<div class="gamecontainer  rulehg" id="prorule">
+			<div class="gamelist">
+				<div class="gametitle">
+					<div class="irhombus"></div>
+					<div class="irhombus2"></div>
+					<h3>项目规则</h3>
+				</div>
+				<div class="allimgwrap">
+					<p class="allword">
+						开发团队须选择并使用以下阿里云 API/SDK，在限定的时间内完成开发。如选择对应的的API，可以加入该 api 所设立的QQ群进行沟通交流，并可以向技术负责人进行咨询或寻求帮助，所有阿里云的公开API和SDK均可以使用，包括：OSS、ODPS、OCS、CDN、OpenSearch、KVStore、ACE以及安全相关的 API等。
+					</p>
+					<p class="allword">
+						答疑交流：362958892 (QQ群)
+					</p>
+					<div class="zanzhu">
+						<p>阿里云 API/SDK：</p>
+						<span class="btnzanzhu"> 
+							<a>
+								<i class="icon icon-api"></i>
+								查看阿里云API
+							</a>
+						</span>
+						<span class="btnzanzhu">
+							<a>
+								<i class="icon icon-api icon-api-img2"></i>
+								查看阿里云安全API
+							</a>	
+						</span>
+					</div>
+					<div class="ruledemand">
+						<div class="ruletable">
+							<h4>开发项目的要求：</h4>
+							<ul class="boxlist clearfix">
+								<li class="boxitem">代码实现功能完整，有完整的单元测试，能编译、测试、运行通过</li>
+								<li class="boxitem">代码工整，有统一的代码风格</li>
+								<li class="boxitem">代码遵循Apache 2.0的开源协议进行开源</li>
+								<li class="boxitem">如果发现剽窃已有的开源代码，参赛者将失去参赛资格</li>
+								<li class="boxitem">该开源项目的作者、主要贡献者例外，也就是已有的开源项目也可以报名参加</li>
+								<li class="boxitem">参赛者比赛项目代码须托管指定代码托管平台：<span>Git@OSC</span> , 提供作品功能的简要说明</li>
+							</ul>
+						</div>
+					</div>
+					<h2 class="xmkf">项目开发参考方向</h2>
+					<div class="hovertab clearfix">
+						<ul class="explain-title clearfix">
+							<li class="expitem">
+								<div class="order">
+									<i class="icon icon-api icon-api-img3"></i>
+								</div>
+								<ul>
+									<li class="titleali">
+										<div class="righticon">
+											<i class="icon icon-mini icon-angle-right"></i>
+										</div>
+										<div class="tabcontent">
+											<span>SDK的语言补充类型</span>
+										</div>
+									</li>
+									<li class="titleali">
+										<div class="righticon">
+											<i class="icon icon-mini icon-angle-right"></i>
+										</div>
+										<div class="tabcontent">
+											<span>开源软件与阿里云产品的整合</span>
+										</div>
+									</li>
+									<li class="titleali">
+										<div class="righticon">
+											<i class="icon icon-mini icon-angle-right"></i>
+										</div>
+										<div class="tabcontent">
+											<span>通过API/SDK的封装， 提供方便易用的工具</span>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li class="expitem">
+								<div class="order">
+									<i class="icon icon-api icon-api-img4"></i>
+								</div>
+								<ul>
+									<li class="titleali">
+										<div class="righticon">
+											<i class="icon icon-mini icon-angle-right"></i>
+										</div>
+										<div class="tabcontent">
+											<span>阿里云安全 API</span>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="explain-detail">
+							<div class="expitem">
+								<div class="item-detail">
+									<p>
+										提供阿里云官方以外的语言类SDK，比如Go或者Ruby等语言类型的SDK 也可以对现有的阿里云的SDK进行完善扩展
+									</p>
+									<strong>
+										参考选题：
+									</strong>
+									<div class="topic">
+										<p>
+											OpenAPI的语言类SDK：go/Ruby/Android/Objective-C
+										</p>
+										<p>OSS的C++/C的SDK</p>
+										<p>实现OSS的Append object的接客，可以实现移动端的视频录制上传到OSS(可以实现视频的回放)</p>
+									</div>
+								</div>
+								<div class="item-detail">
+									<p>
+										对常用的开源软件进行完善，通过阿里云的API进行扩充，方便开源软件能便捷的使用阿里云的云产品服务，比如为git提供oss的存储模块
+									</p>
+									<p>
+										如果代码被开源项目的upstream所接受则可以加分
+									</p>
+									<p>
+										方便管理阿里云产品的工具
+									</p>
+									<strong>
+										参考选题：
+									</strong>
+									<div class="topic">
+										<p>
+											基于阿里云开放搜索OpenSearch openAPI实现WordPress、PHPWind、ECShop、Discuz! 开源系统搜索插件
+										</p>
+										<p>基于OpenSearch实现的搜索功能无缝整合至这些开源系统中，替代原有搜索功能，提升系统搜索体验。</p>
+										<p>实现HDFS on OSS的特性，允许Hadoop使用OSS作为存储后端</p>
+									</div>
+								</div>
+								<div class="item-detail">
+									<p>
+										包括不限于：运维工具、日志工具、或者手机APP
+									</p>
+									<strong>
+										参考选题：
+									</strong>
+									<div class="topic">
+										<p>
+											基于OpenAPI实现SLB的监听复制、备份、还原功能：
+											<span>获取SLB实例监听的数据到配置文件中</span>
+											<span>可以将配置文件批量发布到其他SLB实例</span>
+										</p>
+										<p>基于CDN的API实现：</p>
+										<p>基于RDS实现RDS备份到OSS的功能</p>
+										<p>基于CDN的周边工具：
+											<span>日志数据分析工具，对分发性能、资源内容热度等数据做出有价值的提炼</span>
+											<span>缓存刷新、文件预热工具或应用</span>
+											<span>CDN资源监控移动应用，包括实时浏览资源分发状态、关键指标展示、自定义报警等功能</span>
+											<span>CDN价格比较计算器，根据两种不同计费方式，生成对应计费值等开发项目要求和项目开发参考方向我们可以根据目前的设置方式重新提供；</span>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="expitem">
+								<div class="item-detail">
+									<strong>
+										参考方向：
+									</strong>
+									<p>
+										基于云安全开放的检测、知识库的API，为应用厂商或一线用户提供简单易用的检测/数据分析类安全服务
+									</p>
+									<div class="topic">
+										<ul>
+											<li>使用内容检测的API，实现垃圾文本、消息的防控工具或者类库</li>
+											<li>使用文件检测的 API，实现文件的恶意检查，实现行为分析的工具或者类库</li>
+											<li>使用内容检测的API，实现垃圾文本、消息的防控工具或者类库</li>
+											<li>使用IP信息查询的API，实现使用的工具(恶意IP查询)</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						999999999999999999999
+					</div>
+					99999999999999999999999999999999999999
+					<div>99999999999999999999</div>
+				</div>
+			</div>				
+		</div>
+	</div>
+	
+</body>
+</html>
